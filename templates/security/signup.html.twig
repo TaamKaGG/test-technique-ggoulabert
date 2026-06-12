@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<main>
+    <div>
+        <div id="signup">
+            {% for flash_error in app.flashes('verify_email_error') %}
+                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+            {% endfor %}
+
+            <h1>Inscription pour le FightClubPortal</h1>
+
+            <div>
+                {% for error in formErrors %}
+                    <span>{{ error.origin.config.attributes['data_collector/passed_options'].label }} : {{ error.message }}</span><br>
+                {% endfor %}
+            </div>
+
+            {{ form_start(registrationForm) }}
+                <div>
+                    <span class="bigLabel">{{ form_label(registrationForm.email) }}</span>
+                    {{ form_widget(registrationForm.email) }}
+                </div>
+                
+                <div>
+                    <h4>Identité</h4>
+                    <div>
+                        {{ form_label(registrationForm.name) }}
+                        {{ form_widget(registrationForm.name) }}
+                    </div>
+                    <div>
+                        {{ form_label(registrationForm.first_name) }}
+                        {{ form_widget(registrationForm.first_name) }}
+                    </div>
+                    <div>
+                        {{ form_label(registrationForm.pseudo) }}
+                        {{ form_widget(registrationForm.pseudo) }}
+                    </div>
+                    <div>
+                        {{ form_label(registrationForm.birth_date) }}
+                        {{ form_widget(registrationForm.birth_date) }}
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Address</h4>
+                    <div>
+                        {{ form_label(registrationForm.address.street) }}
+                        {{ form_widget(registrationForm.address.street) }}
+                    </div>
+                    <div>
+                        {{ form_label(registrationForm.address.street_bis) }}
+                        {{ form_widget(registrationForm.address.street_bis) }}
+                    </div>
+                    <div>
+                        {{ form_label(registrationForm.address.postal_code) }}
+                        {{ form_widget(registrationForm.address.postal_code) }}
+                    </div>
+                    <div>
+                        {{ form_label(registrationForm.address.city) }}
+                        {{ form_widget(registrationForm.address.city) }}
+                    </div>
+                    <div>
+                        {{ form_label(registrationForm.address.country) }}
+                        {{ form_widget(registrationForm.address.country) }}
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Informations complémentaires</h4>
+                    <div>
+                        {{ form_label(registrationForm.social_secu) }}
+                        {{ form_widget(registrationForm.social_secu) }}
+                    </div>
+                    <div>
+                        {{ form_label(registrationForm.accred_cerfa) }}
+                        {{ form_widget(registrationForm.accred_cerfa) }}
+                    </div>
+                    <div>
+                        {{ form_label(registrationForm.pokemon) }}
+                        {{ form_widget(registrationForm.pokemon) }}
+                    </div>
+                </div>
+                {{ form_row(registrationForm.agreeTerms) }}
+                <button type="submit" class="btn">Register</button>
+            {{ form_end(registrationForm) }}
+            <br><br>
+            <a href="{{ path('app_login') }}">Se connecter</a>
+        </div>
+    </div>
+</main>
+{% endblock %}

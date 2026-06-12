@@ -1,0 +1,13 @@
+{% block body %}
+<main>
+    <div>
+        <h3>Créer votre mot de passe pour finaliser votre inscription</h3>
+        {{ form_start(passForm) }}
+            {{ form_row(passForm.plainPassword, {
+                label: 'Password'
+            }) }}
+            <button type="submit" class="btn">Register</button>
+        {{ form_end(passForm) }}
+    </div>
+</main>
+{% endblock %}
